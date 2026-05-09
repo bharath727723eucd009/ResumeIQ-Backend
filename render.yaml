@@ -4,12 +4,9 @@
 services:
   - type: web
     name: resume-analyzer-api
-    runtime: python
-    pythonVersion: 3.11.9
-    
-    buildCommand: pip install --upgrade pip setuptools wheel && pip install --only-binary :all: --no-cache-dir -r requirements.txt
-    
-    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    runtime: docker
+    dockerfilePath: Dockerfile
+    dockerContext: .
     
     envVars:
       - key: ENV
