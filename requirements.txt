@@ -1,3 +1,8 @@
+## Production requirements (backend)
+# Kept package versions to match runtime in production.
+# Note: pydantic includes a Rust-backed wheel (pydantic-core);
+# Render build fix applied via render.yaml to set CARGO_HOME/RUSTUP_HOME to /tmp.
+
 fastapi==0.109.0
 uvicorn==0.27.0
 python-multipart==0.0.6
