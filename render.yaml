@@ -1,0 +1,38 @@
+# Render.yaml - Deployment configuration for Render.com
+# This file specifies how to build and run your FastAPI backend on Render
+
+services:
+  - type: web
+    name: resume-analyzer-api
+    runtime: python
+    pythonVersion: 3.10
+    
+    buildCommand: pip install -r requirements.txt
+    
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    
+    envVars:
+      - key: ENV
+        value: production
+      - key: PORT
+        value: 8000
+      - key: ALLOWED_ORIGINS
+        # Update this with your Vercel frontend URL once deployed
+        value: https://your-vercel-frontend.vercel.app
+      - key: DATABASE_URL
+        fromDatabase:
+          name: resume-analyzer-db
+          property: connectionString
+      # These should be added as secrets in Render dashboard:
+      - key: GROQ_API_KEY
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+
+databases:
+  - name: resume-analyzer-db
+    databaseName: resume_analyzer
+    user: postgres
+    plan: free
