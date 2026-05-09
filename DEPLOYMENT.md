@@ -58,3 +58,4 @@ After deployment, verify: `https://your-render-backend.onrender.com/health`
 - **Uvicorn host**: Bind to `0.0.0.0` for production
 - **Port**: Set via `PORT` env var (Render uses `$PORT`)
 - **Rate limiting**: Enabled with slowapi
+  
