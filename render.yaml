@@ -5,7 +5,7 @@ services:
   - type: web
     name: resume-analyzer-api
     runtime: python
-    pythonVersion: 3.11
+    pythonVersion: 3.11.13
     
     buildCommand: pip install --upgrade pip setuptools wheel && pip install --only-binary :all: --no-cache-dir -r requirements.txt
     
