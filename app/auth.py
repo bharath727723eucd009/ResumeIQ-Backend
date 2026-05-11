@@ -11,7 +11,10 @@ router = APIRouter()
 
 SECRET_KEY = os.getenv("JWT_SECRET")
 if not SECRET_KEY:
-    raise RuntimeError("JWT_SECRET environment variable is not set")
+    # Development fallback: don't crash the app on import — use a dev secret.
+    # In production you should set JWT_SECRET in the environment.
+    print("WARNING: JWT_SECRET not set, using development secret")
+    SECRET_KEY = "dev-secret"
 
 def create_token(user_id: int, email: str) -> str:
     payload = {
